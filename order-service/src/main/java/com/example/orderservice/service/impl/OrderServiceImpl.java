@@ -1,18 +1,16 @@
 package com.example.orderservice.service.impl;
 
-import com.example.orderservice.dto.OrderRequest;
-import com.example.orderservice.dto.OrderResponse;
+import com.example.orderservice.dto.request.OrderRequest;
+import com.example.orderservice.dto.response.OrderResponse;
+import com.example.orderservice.exception.OrderNotFoundException;
+import com.example.orderservice.mapper.OrderMapper;
 import com.example.orderservice.model.Order;
 import com.example.orderservice.model.Pizza;
 import com.example.orderservice.repository.OrderRepository;
 import com.example.orderservice.repository.PizzaRepository;
 import com.example.orderservice.service.OrderService;
-import com.example.orderservice.exception.OrderNotFoundException;
-import com.example.orderservice.mapper.OrderMapper;
 import com.example.orderservice.utill.ExceptionMessages;
-import jakarta.persistence.EntityNotFoundException;
-import
- lombok.RequiredArgsConstructor;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -31,7 +29,7 @@ public class OrderServiceImpl implements OrderService {
         Order order = orderMapper.fromRequestToEntity(orderRequest);
         for (Pizza pizza : order.getPizzaList()) {
             Pizza managedPizza = pizzaRepository.findById(pizza.getId())
-                    .orElseThrow(() -> new EntityNotFoundException("Pizza not found with id: " + pizza.getId()));
+                    .orElseThrow(() -> new OrderNotFoundException(String.format(ExceptionMessages.PIZZA_NOT_FOUND,pizza.getId())));
             order.setPizzaList(List.of(managedPizza));
         }
 

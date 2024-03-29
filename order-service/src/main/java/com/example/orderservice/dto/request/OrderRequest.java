@@ -1,4 +1,4 @@
-package com.example.orderservice.dto;
+package com.example.orderservice.dto.request;
 
 import com.example.orderservice.model.Pizza;
 import lombok.*;

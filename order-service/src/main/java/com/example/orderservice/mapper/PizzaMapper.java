@@ -1,7 +1,7 @@
 package com.example.orderservice.mapper;
 
-import com.example.orderservice.dto.PizzaRequest;
-import com.example.orderservice.dto.PizzaResponse;
+import com.example.orderservice.dto.request.PizzaRequest;
+import com.example.orderservice.dto.response.PizzaResponse;
 import com.example.orderservice.model.Pizza;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;

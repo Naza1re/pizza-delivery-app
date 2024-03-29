@@ -1,5 +1,4 @@
-package com.example.orderservice.dto;
-
+package com.example.orderservice.dto.response;
 
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -11,12 +10,13 @@ import lombok.Setter;
 
 import java.util.UUID;
 
-@Getter
 @Setter
-@AllArgsConstructor
+@Getter
 @NoArgsConstructor
-public class PizzaRequest {
+@AllArgsConstructor
+public class PizzaResponse {
 
+    private UUID id;
     private String name;
     private String size;
 }

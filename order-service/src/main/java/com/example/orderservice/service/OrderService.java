@@ -1,7 +1,7 @@
 package com.example.orderservice.service;
 
-import com.example.orderservice.dto.OrderRequest;
-import com.example.orderservice.dto.OrderResponse;
+import com.example.orderservice.dto.request.OrderRequest;
+import com.example.orderservice.dto.response.OrderResponse;
 
 import java.util.UUID;
 

@@ -1,7 +1,5 @@
-package com.example.orderservice.dto;
+package com.example.orderservice.dto.response;
 
-import com.example.orderservice.model.Pizza;
-import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
