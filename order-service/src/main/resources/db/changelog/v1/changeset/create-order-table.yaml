@@ -43,6 +43,11 @@ databaseChangeLog:
                   type: varchar(50)
                   constraints:
                     nullable: false
+              - column:
+                  name: client_id
+                  type: uuid
+                  constraints:
+                    nullable: false
       rollback:
         - dropTable:
             tableName: drivers

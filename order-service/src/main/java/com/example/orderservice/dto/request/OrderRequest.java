@@ -5,6 +5,7 @@ import lombok.*;
 
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.UUID;
 
 @Getter
 @Setter
@@ -18,5 +19,9 @@ public class OrderRequest {
     private LocalDateTime dateOfOrder;
 
     private List<Pizza> pizzaList;
+
+    private UUID clientId;
+
+    private String deliveryAddress;
 
 }

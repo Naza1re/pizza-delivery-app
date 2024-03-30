@@ -23,6 +23,9 @@ public class Order {
 
     private double price;
 
+    @Column(name = "client_id")
+    private UUID clientId;
+
     @Column(name = "delivery_address")
     private String deliveryAddress;
 
