@@ -16,15 +16,26 @@ import java.util.UUID;
 @ToString
 @Table(name = "orders")
 public class Order {
+
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
     private UUID id;
 
     private double price;
 
+    @Column(name = "delivery_address")
+    private String deliveryAddress;
+
+    @Column(name = "client_name")
+    private String clientName;
+
+    @Column(name = "restaurant_id")
+    private UUID restaurantIdl;
+
+    @Column(name = "date_of_order")
     private LocalDateTime dateOfOrder;
 
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @OneToMany(fetch = FetchType.LAZY)
     @JoinColumn(name = "pizza")
     private List<Pizza> pizzaList;
 
