@@ -3,14 +3,11 @@ spring:
     driver-class-name: com.mysql.cj.jdbc.Driver
     password: root
     username: root
-    url: jdbc:mysql://localhost:3306/orders
+    url: jdbc:mysql://localhost:3306/restaurant
   jpa:
     properties:
       hibernate:
         dialect: org.hibernate.dialect.MySQLDialect
     show-sql: true
     hibernate:
-      ddl-auto: none
-  liquibase:
-    enabled: true
-    change-log: db/changelog/db.changelog-master.xml
+      ddl-auto: update
