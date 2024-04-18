@@ -1,5 +1,6 @@
 package com.example.orderservice.exception.handler;
 
+import com.example.orderservice.exception.FeignClientException;
 import com.example.orderservice.exception.OrderNotFoundException;
 import com.example.orderservice.exception.PizzaNotFoundException;
 import com.example.orderservice.exception.error.AppError;
@@ -16,8 +17,17 @@ public class MyExceptionHandler {
     @ExceptionHandler({PizzaNotFoundException.class, OrderNotFoundException.class})
     public ResponseEntity<AppError> handlerNotFoundException(RuntimeException ex) {
         String errorMessage = ex.getMessage();
-        log.error("Error with message : "+ errorMessage+" was called");
+        log.error("Error from NotFoundExceptionHandler with message : {} was called", errorMessage);
         return ResponseEntity.status(HttpStatus.NOT_FOUND)
                 .body(new AppError(errorMessage));
     }
+
+    @ExceptionHandler(FeignClientException.class)
+    public ResponseEntity<AppError> handleFeignClientException(RuntimeException ex) {
+        String errorMessage = ex.getMessage();
+        log.error("Error from FeignClientExceptionHandler with message : {} was called", errorMessage);
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST)
+                .body(new AppError(errorMessage));
+    }
+
 }

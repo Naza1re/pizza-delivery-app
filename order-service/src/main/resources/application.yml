@@ -14,3 +14,10 @@ spring:
   liquibase:
     enabled: true
     change-log: db/changelog/db.changelog-master.xml
+  application:
+    name: order-service
+  service:
+    restaurant:
+      name: restaurant
+      path: /api/v1/restaurant
+
