@@ -10,11 +10,11 @@ public interface RestaurantService {
 
     RestaurantResponse createRestaurant(RestaurantRequest request);
 
-    RestaurantResponse getRestaurantById(UUID id);
+    RestaurantResponse getRestaurantById(Long id);
 
     RestaurantListResponse getAllRestaurants();
 
-    RestaurantResponse deleteRestaurantById(UUID id);
+    RestaurantResponse deleteRestaurantById(Long id);
 
-    RestaurantResponse updateRestaurantById(UUID id,RestaurantRequest request);
+    RestaurantResponse updateRestaurantById(Long id,RestaurantRequest request);
 }

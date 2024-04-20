@@ -1,0 +1,15 @@
+spring:
+  datasource:
+    url:  jdbc:mysql://localhost:3306/deliveryman
+    password: root
+    username: root
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto: none
+  liquibase:
+    enabled: true
+    change-log: db/changelog/db.changelog-master.xml
+server:
+  port: 8081
