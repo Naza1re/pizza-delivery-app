@@ -1,5 +1,6 @@
 package com.example.orderservice.service.impl;
 
+import com.example.orderservice.dto.ListOrderResponse;
 import com.example.orderservice.dto.request.OrderRequest;
 import com.example.orderservice.dto.response.OrderResponse;
 import com.example.orderservice.exception.OrderNotFoundException;
@@ -46,5 +47,15 @@ public class OrderServiceImpl implements OrderService {
     public OrderResponse getOrderById(UUID id) {
         Order order = getOrThrow(id);
         return orderMapper.fromEntityToResponse(order);
+    }
+
+    @Override
+    public ListOrderResponse getAllOrders() {
+        List<Order> allOrders = orderRepository.findAll();
+        List<OrderResponse> orderResponseList = allOrders
+                .stream()
+                .map(orderMapper::fromEntityToResponse)
+                .toList();
+        return new ListOrderResponse(orderResponseList);
     }
 }

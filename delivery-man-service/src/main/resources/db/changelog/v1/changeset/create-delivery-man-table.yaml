@@ -1,16 +1,16 @@
 databaseChangeLog:
   - changeSet:
-      id: create-order-table;
+      id: create-delivery-man-table;
       author: Nazar
       preConditions:
         - onFail: MARK_RAN
           or:
             - not:
                 tableExists:
-                  tableName: orders
+                  tableName: deliveryman
       changes:
         - createTable:
-            tableName: orders
+            tableName: deliveryman
             columns:
               - column:
                   name: id
@@ -19,32 +19,22 @@ databaseChangeLog:
                     primaryKey: true
                     nullable: false
               - column:
-                  name: delivery_address
+                  name: firstname
                   type: varchar(50)
                   constraints:
                     nullable: false
               - column:
-                  name: restaurant_id
-                  type: uuid
-                  constraints:
-                    nullable: false
-              - column:
-                  name: date_of_order
-                  type: TIMESTAMP
-                  constraints:
-                    nullable: false
-              - column:
-                  name: price
-                  type: double
-                  constraints:
-                    nullable: false
-              - column:
-                  name: client_name
+                  name: lastname
                   type: varchar(50)
                   constraints:
                     nullable: false
               - column:
-                  name: client_id
-                  type: uuid
+                  name: email
+                  type: varchar(50)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: phone
+                  type: varchar(50)
                   constraints:
                     nullable: false

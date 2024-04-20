@@ -1,0 +1,30 @@
+databaseChangeLog:
+  - changeSet:
+      id: create-pizza-table
+      author: Nazar
+      preConditions:
+        - onFail: MARK_RAN
+          or:
+            - not:
+                tableExists:
+                  tableName: pizza
+      changes:
+        - createTable:
+            tableName: pizza
+            columns:
+              - column:
+                  name: id
+                  type: uuid
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: name
+                  type: varchar(50)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: size
+                  type: varchar(20)
+                  constraints:
+                    nullable: false
