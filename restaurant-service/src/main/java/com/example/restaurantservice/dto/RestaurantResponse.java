@@ -13,7 +13,7 @@ import java.util.UUID;
 @Builder
 public class RestaurantResponse {
 
-    private UUID id;
+    private Long id;
     private String name;
     private String address;
 }

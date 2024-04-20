@@ -1,10 +1,9 @@
 package com.example.orderservice.dto.request;
 
-import com.example.orderservice.model.Pizza;
+import com.example.orderservice.dto.response.PizzaListResponse;
 import lombok.*;
 
 import java.time.LocalDateTime;
-import java.util.List;
 import java.util.UUID;
 
 @Getter
@@ -18,7 +17,7 @@ public class OrderRequest {
 
     private LocalDateTime dateOfOrder;
 
-    private List<Pizza> pizzaList;
+    private PizzaListResponse pizzaListResponse;
 
     private UUID clientId;
 

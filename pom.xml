@@ -13,6 +13,7 @@
         <module>order-service</module>
         <module>restaurant-service</module>
         <module>delivery-service</module>
+        <module>delivery-man-service</module>
     </modules>
 
     <properties>

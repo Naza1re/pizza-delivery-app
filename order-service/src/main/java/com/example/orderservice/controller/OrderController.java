@@ -1,6 +1,7 @@
 package com.example.orderservice.controller;
 
 
+import com.example.orderservice.dto.ListOrderResponse;
 import com.example.orderservice.dto.request.OrderRequest;
 import com.example.orderservice.dto.response.OrderResponse;
 import com.example.orderservice.service.OrderService;
@@ -25,9 +26,14 @@ public class OrderController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<OrderResponse> getOrderById(@PathVariable UUID id) {
+    public ResponseEntity<OrderResponse> getOrderById(@PathVariable Long id) {
         return ResponseEntity.ok()
                 .body(orderService.getOrderById(id));
+    }
+
+    @GetMapping()
+    public ResponseEntity<ListOrderResponse> getAllOrders() {
+        return ResponseEntity.ok(orderService.getAllOrders());
     }
 
 
