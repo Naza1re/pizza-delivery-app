@@ -14,5 +14,11 @@ spring:
   liquibase:
     enabled: true
     change-log: db/changelog/db.changelog-master.xml
+  application:
+    name: restaurant-service
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8090/eureka
 server:
-  port: 8082
+  port: 8083

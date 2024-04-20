@@ -28,6 +28,4 @@ public class Delivery {
     @Enumerated(EnumType.STRING)
     private Status status;
 
-    @ManyToOne
-    private DeliveryMen deliveryMen;
 }

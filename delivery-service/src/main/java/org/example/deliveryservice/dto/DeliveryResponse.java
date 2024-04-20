@@ -4,7 +4,6 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.example.deliveryservice.model.DeliveryMen;
 import org.example.deliveryservice.model.status.Status;
 
 import java.util.UUID;
@@ -18,7 +17,6 @@ public class DeliveryResponse {
     private UUID id;
     private UUID orderID;
     private Status status;
-    private DeliveryMen deliveryMen;
 
 
 }
