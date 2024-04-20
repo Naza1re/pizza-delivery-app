@@ -14,10 +14,11 @@ databaseChangeLog:
             columns:
               - column:
                   name: id
-                  type: uuid
+                  type: bigint
                   constraints:
                     primaryKey: true
                     nullable: false
+                  autoIncrement: true
               - column:
                   name: firstname
                   type: varchar(50)

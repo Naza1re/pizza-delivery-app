@@ -17,7 +17,6 @@ import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.UUID;
 
 @Service
 @Slf4j
@@ -36,14 +35,14 @@ public class RestaurantServiceImpl implements RestaurantService {
         return restaurantMapper.fromEntityToResponse(restaurantRepository.save(restaurant));
     }
 
-    private Restaurant getOrThrow(UUID id) {
+    private Restaurant getOrThrow(Long id) {
         return restaurantRepository.findById(id)
                 .orElseThrow(() -> new RestaurantNotFoundException(String.format(ExceptionMessages.RESTAURANT_NOT_FOUND, id)));
     }
 
     @Cacheable(cacheNames = "restaurants", key = "#id")
     @Override
-    public RestaurantResponse getRestaurantById(UUID id) {
+    public RestaurantResponse getRestaurantById(Long id) {
         Restaurant restaurant = getOrThrow(id);
         return restaurantMapper.fromEntityToResponse(restaurant);
     }
@@ -71,7 +70,7 @@ public class RestaurantServiceImpl implements RestaurantService {
 
     @CacheEvict(cacheNames = "restaurants", allEntries = true)
     @Override
-    public RestaurantResponse deleteRestaurantById(UUID id) {
+    public RestaurantResponse deleteRestaurantById(Long id) {
         Restaurant restaurant = getOrThrow(id);
         restaurantRepository.delete(restaurant);
         return restaurantMapper.fromEntityToResponse(restaurant);
@@ -79,7 +78,7 @@ public class RestaurantServiceImpl implements RestaurantService {
 
     @CacheEvict(cacheNames = "restaurants", allEntries = true)
     @Override
-    public RestaurantResponse updateRestaurantById(UUID id, RestaurantRequest request) {
+    public RestaurantResponse updateRestaurantById(Long id, RestaurantRequest request) {
         Restaurant restaurant = getOrThrow(id);
         Restaurant updatedRestaurant = restaurantMapper.fromRequestToEntity(request);
         updatedRestaurant.setId(id);

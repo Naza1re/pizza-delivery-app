@@ -29,7 +29,7 @@ public class RestaurantController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<RestaurantResponse> getRestaurantById(@PathVariable UUID id) {
+    public ResponseEntity<RestaurantResponse> getRestaurantById(@PathVariable Long id) {
         return ResponseEntity.ok(restaurantService.getRestaurantById(id));
     }
 
@@ -39,14 +39,14 @@ public class RestaurantController {
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<RestaurantResponse> deleteRestaurant(@PathVariable UUID id) {
+    public ResponseEntity<RestaurantResponse> deleteRestaurant(@PathVariable Long id) {
         return ResponseEntity.status(HttpStatus.NO_CONTENT)
                 .body(restaurantService.deleteRestaurantById(id));
     }
 
     @PutMapping("/{id}")
     public ResponseEntity<RestaurantResponse> updateRestaurant(
-            @PathVariable UUID id, @RequestBody RestaurantRequest request) {
+            @PathVariable Long id, @RequestBody RestaurantRequest request) {
         return ResponseEntity.ok(restaurantService.updateRestaurantById(id,request));
     }
 }

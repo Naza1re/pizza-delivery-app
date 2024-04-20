@@ -10,7 +10,7 @@ public interface OrderService {
 
     OrderResponse createOrder(OrderRequest orderRequest);
 
-    OrderResponse getOrderById(UUID id);
+    OrderResponse getOrderById(Long id);
 
     ListOrderResponse getAllOrders();
 }

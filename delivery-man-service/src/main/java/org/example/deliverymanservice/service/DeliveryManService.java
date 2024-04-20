@@ -8,9 +8,9 @@ import java.util.UUID;
 public interface DeliveryManService {
     DeliveryManResponse createDeliveryMan(DeliveryManRequest request);
 
-    DeliveryManResponse getDeliveryManById(UUID id);
+    DeliveryManResponse getDeliveryManById(Long id);
 
-    DeliveryManResponse deleteDeliveryManById(UUID id);
+    DeliveryManResponse deleteDeliveryManById(Long id);
 
-    DeliveryManResponse updateDeliveryManById(UUID id, DeliveryManRequest request);
+    DeliveryManResponse updateDeliveryManById(Long id, DeliveryManRequest request);
 }

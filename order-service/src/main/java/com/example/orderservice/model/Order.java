@@ -2,6 +2,7 @@ package com.example.orderservice.model;
 
 import jakarta.persistence.*;
 import lombok.*;
+import org.hibernate.annotations.GenericGenerator;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -18,8 +19,8 @@ import java.util.UUID;
 public class Order {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.UUID)
-    private UUID id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
 
     private double price;
 
@@ -38,9 +39,7 @@ public class Order {
     @Column(name = "date_of_order")
     private LocalDateTime dateOfOrder;
 
-    @OneToMany(fetch = FetchType.LAZY)
-    @JoinColumn(name = "pizza")
-    private List<Pizza> pizzaList;
+
 
 
 }

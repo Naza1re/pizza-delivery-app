@@ -12,7 +12,7 @@ import java.util.UUID;
 @NoArgsConstructor
 @Builder
 public class DeliveryManResponse {
-    private UUID id;
+    private Long id;
     private String firstname;
     private String lastname;
     private String email;

@@ -29,19 +29,19 @@ public class DeliveryManServiceImpl implements DeliveryManService {
     }
 
 
-    private DeliveryMan getOrThrow(UUID id) {
+    private DeliveryMan getOrThrow(Long id) {
         return deliveryManRepository.findById(id)
                 .orElseThrow(() -> new DeliveryManNotFoundException(String.format(ExceptionMessages.DELIVERY_MAN_NOT_FOUND, id)));
     }
 
     @Override
-    public DeliveryManResponse getDeliveryManById(UUID id) {
+    public DeliveryManResponse getDeliveryManById(Long id) {
         DeliveryMan deliveryMan = getOrThrow(id);
         return deliveryManMapper.fromEntityToResponse(deliveryMan);
     }
 
     @Override
-    public DeliveryManResponse deleteDeliveryManById(UUID id) {
+    public DeliveryManResponse deleteDeliveryManById(Long id) {
         DeliveryMan deliveryMan = getOrThrow(id);
 
         deliveryManRepository.delete(deliveryMan);
@@ -49,7 +49,7 @@ public class DeliveryManServiceImpl implements DeliveryManService {
     }
 
     @Override
-    public DeliveryManResponse updateDeliveryManById(UUID id, DeliveryManRequest request) {
+    public DeliveryManResponse updateDeliveryManById(Long id, DeliveryManRequest request) {
         DeliveryMan deliveryMan = getOrThrow(id);
         DeliveryMan updatedDeliveryMan = deliveryManMapper.fromRequestToEntity(request);
         updatedDeliveryMan.setId(id);

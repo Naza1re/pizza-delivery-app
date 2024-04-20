@@ -3,6 +3,6 @@
                    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
 http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.1.xsd">
 
-    <include file="changeset/create-order-table.yaml" relativeToChangelogFile="true"/>
+    <include file="changeset/create-restaurant-table.yaml" relativeToChangelogFile="true"/>
 
 </databaseChangeLog>
