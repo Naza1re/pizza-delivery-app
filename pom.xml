@@ -15,6 +15,7 @@
         <module>delivery-service</module>
         <module>delivery-man-service</module>
         <module>eureka-server</module>
+        <module>api-gateway</module>
     </modules>
 
     <properties>
