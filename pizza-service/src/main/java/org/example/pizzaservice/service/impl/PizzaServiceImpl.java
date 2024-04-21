@@ -45,6 +45,7 @@ public class PizzaServiceImpl implements PizzaService {
     public PizzaResponse updatePizza(Long id, PizzaRequest request) {
         Pizza pizza = getOrThrow(id);
         Pizza pizzaForSaved = pizzaMapper.fromRequestToEntity(request);
+        pizzaForSaved.setId(id);
         Pizza savedPizza = pizzaRepository.save(pizzaForSaved);
         return pizzaMapper.fromEntityToResponse(savedPizza);
     }
