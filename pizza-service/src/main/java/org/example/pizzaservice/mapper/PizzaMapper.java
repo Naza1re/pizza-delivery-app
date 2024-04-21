@@ -1,4 +1,4 @@
-package org.example.pizzaservice.service.mapper;
+package org.example.pizzaservice.mapper;
 
 import org.example.pizzaservice.dto.PizzaRequest;
 import org.example.pizzaservice.dto.PizzaResponse;

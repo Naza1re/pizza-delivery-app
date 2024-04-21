@@ -1,4 +1,4 @@
-package org.example.pizzaservice.config;
+package org.example.pizzaservice.dto.config;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.context.annotation.Bean;
