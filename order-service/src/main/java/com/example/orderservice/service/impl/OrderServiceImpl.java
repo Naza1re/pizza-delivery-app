@@ -1,8 +1,10 @@
 package com.example.orderservice.service.impl;
 
+import com.example.orderservice.client.PizzaClient;
 import com.example.orderservice.dto.ListOrderResponse;
 import com.example.orderservice.dto.request.OrderRequest;
 import com.example.orderservice.dto.response.OrderResponse;
+import com.example.orderservice.dto.response.PizzaResponse;
 import com.example.orderservice.exception.OrderNotFoundException;
 import com.example.orderservice.mapper.OrderMapper;
 import com.example.orderservice.model.Order;
@@ -12,6 +14,7 @@ import com.example.orderservice.utill.ExceptionMessages;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -19,13 +22,21 @@ import java.util.List;
 public class OrderServiceImpl implements OrderService {
     private final OrderRepository orderRepository;
     private final OrderMapper orderMapper;
+    private final PizzaClient pizzaClient;
 
 
     @Override
     public OrderResponse createOrder(OrderRequest orderRequest) {
         Order order = orderMapper.fromRequestToEntity(orderRequest);
+        List<PizzaResponse> pizzaResponses = new ArrayList<>();
+
 
         return orderMapper.fromEntityToResponse(orderRepository.save(order));
+    }
+
+    private void calculatePrice(Order order, List<PizzaResponse> pizzaResponses) {
+        List<Long> pizzaIds = pizzaResponses.stream().map(PizzaResponse::getId).toList();
+        List<Order> orders = orderRepository.findAllById(pizzaIds);
     }
 
     private Order getOrThrow(Long id) {
