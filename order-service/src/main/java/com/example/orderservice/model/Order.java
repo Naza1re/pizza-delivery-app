@@ -1,5 +1,6 @@
 package com.example.orderservice.model;
 
+import com.example.orderservice.model.status.Status;
 import jakarta.persistence.*;
 import lombok.*;
 import org.hibernate.annotations.GenericGenerator;
@@ -23,10 +24,11 @@ public class Order {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Column(name = "price")
     private BigDecimal price;
 
     @Column(name = "client_id")
-    private UUID clientId;
+    private Long clientId;
 
     @Column(name = "delivery_address")
     private String deliveryAddress;
@@ -35,10 +37,14 @@ public class Order {
     private String clientName;
 
     @Column(name = "restaurant_id")
-    private UUID restaurantIdl;
+    private Long restaurantIdl;
 
     @Column(name = "date_of_order")
     private LocalDateTime dateOfOrder;
+
+    @Column(name = "status")
+    @Enumerated(EnumType.STRING)
+    private Status status;
 
 
 
