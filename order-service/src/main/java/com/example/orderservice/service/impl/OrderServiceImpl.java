@@ -5,7 +5,6 @@ import com.example.orderservice.client.PizzaClient;
 import com.example.orderservice.dto.ListOrderResponse;
 import com.example.orderservice.dto.request.OrderRequest;
 import com.example.orderservice.dto.response.OrderResponse;
-import com.example.orderservice.dto.response.PizzaResponse;
 import com.example.orderservice.exception.OrderNotFoundException;
 import com.example.orderservice.mapper.OrderMapper;
 import com.example.orderservice.model.Order;
@@ -16,7 +15,6 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
-import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -28,21 +26,23 @@ public class OrderServiceImpl implements OrderService {
     private final DeliveryClient deliveryClient;
 
 
-
     @Override
     public OrderResponse createOrder(OrderRequest orderRequest) {
         Order order = orderMapper.fromRequestToEntity(orderRequest);
-        List<PizzaResponse> pizzaResponses = new ArrayList<>();
+        calculatePrice(order);
 
 
         return orderMapper.fromEntityToResponse(orderRepository.save(order));
     }
 
 
-
     private void calculatePrice(Order order) {
         BigDecimal totalPrice = BigDecimal.ZERO;
-        for(Long pizza : ord )
+        for (Long pizzaId : order) {
+            BigDecimal pizzaPrice = pizzaClient.getPizzaById(pizzaId).getPrice();
+            totalPrice = totalPrice.add(pizzaPrice);
+        }
+        order.setPrice(totalPrice);
     }
 
     private Order getOrThrow(Long id) {
