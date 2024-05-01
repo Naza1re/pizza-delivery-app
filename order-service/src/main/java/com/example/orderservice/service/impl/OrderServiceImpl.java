@@ -15,6 +15,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Service
@@ -29,16 +30,16 @@ public class OrderServiceImpl implements OrderService {
     @Override
     public OrderResponse createOrder(OrderRequest orderRequest) {
         Order order = orderMapper.fromRequestToEntity(orderRequest);
-        calculatePrice(order);
-
+        calculatePrice(order, orderRequest);
+        order.setDateOfOrder(LocalDateTime.now());
 
         return orderMapper.fromEntityToResponse(orderRepository.save(order));
     }
 
 
-    private void calculatePrice(Order order) {
+    private void calculatePrice(Order order,OrderRequest request) {
         BigDecimal totalPrice = BigDecimal.ZERO;
-        for (Long pizzaId : order) {
+        for (Long pizzaId : request.getPizzas()) {
             BigDecimal pizzaPrice = pizzaClient.getPizzaById(pizzaId).getPrice();
             totalPrice = totalPrice.add(pizzaPrice);
         }
