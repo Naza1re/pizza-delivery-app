@@ -1,7 +1,6 @@
 package org.example.clientservice.service.impl;
 
 import lombok.RequiredArgsConstructor;
-import org.example.clientservice.dto.ClientListResponse;
 import org.example.clientservice.dto.request.ClientRequest;
 import org.example.clientservice.dto.response.ClientListResponse;
 import org.example.clientservice.dto.response.ClientResponse;
