@@ -1,15 +1,19 @@
 package com.example.orderservice.service.impl;
 
+import com.example.orderservice.client.ClientClient;
 import com.example.orderservice.client.DeliveryClient;
 import com.example.orderservice.client.PizzaClient;
 import com.example.orderservice.dto.ListOrderResponse;
 import com.example.orderservice.dto.request.OrderRequest;
+import com.example.orderservice.dto.response.ClientResponse;
 import com.example.orderservice.dto.response.OrderResponse;
 import com.example.orderservice.exception.OrderNotFoundException;
 import com.example.orderservice.mapper.OrderMapper;
 import com.example.orderservice.model.Order;
 import com.example.orderservice.repository.OrderRepository;
+import com.example.orderservice.service.ClientService;
 import com.example.orderservice.service.OrderService;
+import com.example.orderservice.service.PizzaService;
 import com.example.orderservice.utill.ExceptionMessages;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -23,24 +27,29 @@ import java.util.List;
 public class OrderServiceImpl implements OrderService {
     private final OrderRepository orderRepository;
     private final OrderMapper orderMapper;
-    private final PizzaClient pizzaClient;
-    private final DeliveryClient deliveryClient;
+    private final PizzaService pizzaService;
+
+
+    private final ClientService clientService;
 
 
     @Override
     public OrderResponse createOrder(OrderRequest orderRequest) {
+        ClientResponse clientResponse = clientService.findClientById(orderRequest.getClientId());
         Order order = orderMapper.fromRequestToEntity(orderRequest);
+        order.setClientName(clientResponse.getFirstName());
         calculatePrice(order, orderRequest);
         order.setDateOfOrder(LocalDateTime.now());
+
 
         return orderMapper.fromEntityToResponse(orderRepository.save(order));
     }
 
 
-    private void calculatePrice(Order order,OrderRequest request) {
+    private void calculatePrice(Order order, OrderRequest request) {
         BigDecimal totalPrice = BigDecimal.ZERO;
         for (Long pizzaId : request.getPizzas()) {
-            BigDecimal pizzaPrice = pizzaClient.getPizzaById(pizzaId).getPrice();
+            BigDecimal pizzaPrice = pizzaService.findPizzaById(pizzaId).getPrice();
             totalPrice = totalPrice.add(pizzaPrice);
         }
         order.setPrice(totalPrice);
