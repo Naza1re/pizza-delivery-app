@@ -1,4 +1,4 @@
-package com.example.orderservice.kafka;
+package com.example.orderservice.kafka.producer;
 
 import com.example.orderservice.dto.request.OrderForDelivery;
 import lombok.RequiredArgsConstructor;

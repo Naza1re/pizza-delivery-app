@@ -46,8 +46,9 @@ public class Order {
     @Enumerated(EnumType.STRING)
     private Status status;
 
-    @Column(name = "pizza_id")
-    private List<Pizza> pizzaId;
+    @Column(name = "delivery_man")
+    private Long deliveryManId;
+
 
 
 

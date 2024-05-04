@@ -1,13 +1,13 @@
 package com.example.orderservice.service.impl;
 
-import com.example.orderservice.client.ClientClient;
-import com.example.orderservice.client.DeliveryClient;
-import com.example.orderservice.client.PizzaClient;
 import com.example.orderservice.dto.ListOrderResponse;
+import com.example.orderservice.dto.request.DeliveryForOrder;
+import com.example.orderservice.dto.request.OrderForDelivery;
 import com.example.orderservice.dto.request.OrderRequest;
 import com.example.orderservice.dto.response.ClientResponse;
 import com.example.orderservice.dto.response.OrderResponse;
 import com.example.orderservice.exception.OrderNotFoundException;
+import com.example.orderservice.kafka.producer.OrderProducer;
 import com.example.orderservice.mapper.OrderMapper;
 import com.example.orderservice.model.Order;
 import com.example.orderservice.repository.OrderRepository;
@@ -29,6 +29,7 @@ public class OrderServiceImpl implements OrderService {
     private final OrderMapper orderMapper;
     private final PizzaService pizzaService;
     private final ClientService clientService;
+    private final OrderProducer orderProducer;
 
 
     @Override
@@ -39,8 +40,13 @@ public class OrderServiceImpl implements OrderService {
         calculatePrice(order, orderRequest);
         order.setDateOfOrder(LocalDateTime.now());
 
+        Order savedOrder = orderRepository.save(order);
 
-        return orderMapper.fromEntityToResponse(orderRepository.save(order));
+        orderProducer.sendMessage(OrderForDelivery.builder()
+                .orderId(savedOrder.getId())
+                .build());
+
+        return orderMapper.fromEntityToResponse(savedOrder);
     }
 
 
@@ -73,5 +79,12 @@ public class OrderServiceImpl implements OrderService {
                 .map(orderMapper::fromEntityToResponse)
                 .toList();
         return new ListOrderResponse(orderResponseList);
+    }
+
+    @Override
+    public void handleDeliveryMan(DeliveryForOrder delivery) {
+        Order order = getOrThrow(delivery.getOrderId());
+        order.setDeliveryManId(delivery.getDeliveryManId());
+        orderRepository.save(order);
     }
 }
