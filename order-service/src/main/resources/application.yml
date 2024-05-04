@@ -13,6 +13,19 @@ spring:
     change-log: db/changelog/db.changelog-master.xml
   application:
     name: order-service
+  kafka:
+    producer:
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
+      bootstrap-servers: localhost:9092
+topic:
+    name:
+      order: order
+kafka:
+    partitions:
+      count: 1
+    replicas:
+      count: 1
 eureka:
   client:
     service-url:
