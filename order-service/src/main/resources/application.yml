@@ -21,6 +21,7 @@ spring:
 topic:
     name:
       order: order
+      delivery: delivery
 kafka:
     partitions:
       count: 1
