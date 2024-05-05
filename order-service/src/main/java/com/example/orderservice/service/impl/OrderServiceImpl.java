@@ -1,6 +1,7 @@
 package com.example.orderservice.service.impl;
 
-import com.example.orderservice.dto.ListOrderResponse;
+import com.example.orderservice.client.DeliveryManClient;
+import com.example.orderservice.dto.response.ListOrderResponse;
 import com.example.orderservice.dto.request.DeliveryForOrder;
 import com.example.orderservice.dto.request.OrderForDelivery;
 import com.example.orderservice.dto.request.OrderRequest;
@@ -12,6 +13,7 @@ import com.example.orderservice.mapper.OrderMapper;
 import com.example.orderservice.model.Order;
 import com.example.orderservice.repository.OrderRepository;
 import com.example.orderservice.service.ClientService;
+import com.example.orderservice.service.DeliveryManService;
 import com.example.orderservice.service.OrderService;
 import com.example.orderservice.service.PizzaService;
 import com.example.orderservice.utill.ExceptionMessages;
@@ -30,6 +32,7 @@ public class OrderServiceImpl implements OrderService {
     private final PizzaService pizzaService;
     private final ClientService clientService;
     private final OrderProducer orderProducer;
+    private final DeliveryManService deliveryManService;
 
 
     @Override
@@ -85,6 +88,7 @@ public class OrderServiceImpl implements OrderService {
     public void handleDeliveryMan(DeliveryForOrder delivery) {
         Order order = getOrThrow(delivery.getOrderId());
         order.setDeliveryManId(delivery.getDeliveryManId());
+        deliveryManService.changeDeliveryManStatus(order.getDeliveryManId());
         orderRepository.save(order);
     }
 }

@@ -1,7 +1,7 @@
 package com.example.orderservice.client;
 
-import com.example.orderservice.dto.DeliveryRequest;
-import com.example.orderservice.dto.DeliveryResponse;
+import com.example.orderservice.dto.request.DeliveryRequest;
+import com.example.orderservice.dto.response.DeliveryResponse;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.cloud.openfeign.hateoas.FeignHalAutoConfiguration;
 import org.springframework.web.bind.annotation.PostMapping;

@@ -1,4 +1,4 @@
-package com.example.orderservice.dto;
+package com.example.orderservice.dto.response;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -9,8 +9,5 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class DeliveryRequest {
-
-    private Long orderId;
-    private String orderStatus;
+public class DeliveryResponse {
 }

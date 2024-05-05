@@ -36,4 +36,9 @@ public class DeliveryManController {
     public ResponseEntity<DeliveryManResponse> updateDeliveryMan(@PathVariable Long id, @RequestBody DeliveryManRequest request) {
         return ResponseEntity.ok(deliveryManService.updateDeliveryManById(id, request));
     }
+
+    @PutMapping("/status/{id}")
+    public ResponseEntity<DeliveryManResponse> updateDeliveryManStatus(@PathVariable Long id) {
+        return ResponseEntity.ok(deliveryManService.updateStatus(id));
+    }
 }

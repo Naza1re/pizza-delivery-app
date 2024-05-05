@@ -1,11 +1,9 @@
 package com.example.orderservice.service;
 
-import com.example.orderservice.dto.ListOrderResponse;
+import com.example.orderservice.dto.response.ListOrderResponse;
 import com.example.orderservice.dto.request.DeliveryForOrder;
 import com.example.orderservice.dto.request.OrderRequest;
 import com.example.orderservice.dto.response.OrderResponse;
-
-import java.util.UUID;
 
 public interface OrderService {
 
