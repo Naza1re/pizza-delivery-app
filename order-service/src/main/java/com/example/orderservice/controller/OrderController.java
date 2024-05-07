@@ -1,7 +1,7 @@
 package com.example.orderservice.controller;
 
 
-import com.example.orderservice.dto.ListOrderResponse;
+import com.example.orderservice.dto.response.ListOrderResponse;
 import com.example.orderservice.dto.request.OrderRequest;
 import com.example.orderservice.dto.response.OrderResponse;
 import com.example.orderservice.service.OrderService;
@@ -10,7 +10,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.UUID;
 
 @RestController
 @RequestMapping("/api/v1/order")

@@ -16,12 +16,24 @@
     <properties>
         <spring-cloud.version>2023.0.1</spring-cloud.version>
         <java.version>17</java.version>
+        <circuit.breaker.version>3.1.0</circuit.breaker.version>
     </properties>
     <dependencies>
 
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-data-jpa</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-circuitbreaker-resilience4j</artifactId>
+            <version>${circuit.breaker.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.kafka</groupId>
+            <artifactId>spring-kafka</artifactId>
         </dependency>
 
         <dependency>
@@ -34,6 +46,13 @@
             <artifactId>liquibase-core</artifactId>
             <version>4.27.0</version>
         </dependency>
+
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-feign</artifactId>
+            <version>1.4.7.RELEASE</version>
+        </dependency>
+
 
         <dependency>
             <groupId>com.mysql</groupId>

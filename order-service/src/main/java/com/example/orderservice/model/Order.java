@@ -1,9 +1,11 @@
 package com.example.orderservice.model;
 
+import com.example.orderservice.model.status.Status;
 import jakarta.persistence.*;
 import lombok.*;
 import org.hibernate.annotations.GenericGenerator;
 
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.UUID;
@@ -22,10 +24,11 @@ public class Order {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private double price;
+    @Column(name = "price")
+    private BigDecimal price;
 
     @Column(name = "client_id")
-    private UUID clientId;
+    private Long clientId;
 
     @Column(name = "delivery_address")
     private String deliveryAddress;
@@ -34,10 +37,18 @@ public class Order {
     private String clientName;
 
     @Column(name = "restaurant_id")
-    private UUID restaurantIdl;
+    private Long restaurantIdl;
 
     @Column(name = "date_of_order")
     private LocalDateTime dateOfOrder;
+
+    @Column(name = "status")
+    @Enumerated(EnumType.STRING)
+    private Status status;
+
+    @Column(name = "delivery_man")
+    private Long deliveryManId;
+
 
 
 

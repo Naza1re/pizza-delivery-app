@@ -1,17 +1,15 @@
-package org.example.deliveryservice.dto;
+package com.example.orderservice.dto.request;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.util.UUID;
-
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class DeliveryRequest {
+public class DeliveryForOrder {
     private Long orderId;
-
+    private Long deliveryManId;
 }

@@ -6,15 +6,15 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.math.BigDecimal;
-
-@Data
+@Builder
 @AllArgsConstructor
 @NoArgsConstructor
-@Builder
-public class PizzaResponse {
+@Data
+public class ClientResponse {
     private Long id;
-    private String name;
-    private String size;
-    private BigDecimal price;
+    private String firstName;
+    private String lastName;
+    private String email;
+    private String phone;
+    private String address;
 }

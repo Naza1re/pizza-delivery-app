@@ -55,4 +55,11 @@ public class DeliveryManServiceImpl implements DeliveryManService {
         updatedDeliveryMan.setId(id);
         return deliveryManMapper.fromEntityToResponse(deliveryManRepository.save(updatedDeliveryMan));
     }
+
+    @Override
+    public DeliveryManResponse updateStatus(Long id) {
+        DeliveryMan deliveryMan = getOrThrow(id);
+        deliveryMan.setAvailable(!deliveryMan.isAvailable());
+        return deliveryManMapper.fromEntityToResponse(deliveryManRepository.save(deliveryMan));
+    }
 }

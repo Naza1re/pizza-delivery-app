@@ -1,20 +1,19 @@
 package com.example.orderservice.dto.response;
 
-
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.math.BigDecimal;
-
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class PizzaResponse {
+public class DeliveryManResponse {
     private Long id;
-    private String name;
-    private String size;
-    private BigDecimal price;
+    private String firstname;
+    private String lastname;
+    private String email;
+    private String phone;
+    private boolean available;
 }

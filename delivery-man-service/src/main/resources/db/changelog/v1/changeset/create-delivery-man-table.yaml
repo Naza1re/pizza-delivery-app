@@ -39,3 +39,8 @@ databaseChangeLog:
                   type: varchar(50)
                   constraints:
                     nullable: false
+              - column:
+                  name: available
+                  type: bool
+                  constraints:
+                    nullable: false
