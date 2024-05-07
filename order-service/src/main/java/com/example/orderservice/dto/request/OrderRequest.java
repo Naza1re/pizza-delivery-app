@@ -1,26 +1,21 @@
 package com.example.orderservice.dto.request;
 
-import com.example.orderservice.dto.response.PizzaListResponse;
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
-import java.time.LocalDateTime;
-import java.util.UUID;
+import java.util.List;
 
-@Getter
-@Setter
+@Data
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
 public class OrderRequest {
-
-    private double price;
-
-    private LocalDateTime dateOfOrder;
-
-    private PizzaListResponse pizzaListResponse;
-
-    private UUID clientId;
-
+    private List<Long> pizzas;
+    private Long clientId;
     private String deliveryAddress;
+    private Long restaurantIdl;
+
 
 }

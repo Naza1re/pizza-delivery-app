@@ -16,6 +16,7 @@
         <module>delivery-man-service</module>
         <module>eureka-server</module>
         <module>api-gateway</module>
+        <module>pizza-service</module>
     </modules>
 
     <properties>

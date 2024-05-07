@@ -12,6 +12,6 @@ import java.util.UUID;
 @NoArgsConstructor
 @Builder
 public class DeliveryRequest {
-    private UUID orderId;
+    private Long orderId;
 
 }

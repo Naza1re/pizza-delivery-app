@@ -13,4 +13,6 @@ public interface DeliveryManService {
     DeliveryManResponse deleteDeliveryManById(Long id);
 
     DeliveryManResponse updateDeliveryManById(Long id, DeliveryManRequest request);
+
+    DeliveryManResponse updateStatus(Long id);
 }

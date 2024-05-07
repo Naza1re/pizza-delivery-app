@@ -14,8 +14,8 @@ import java.util.UUID;
 @Builder
 public class DeliveryResponse {
 
-    private UUID id;
-    private UUID orderID;
+    private Long id;
+    private Long orderID;
     private Status status;
 
 
