@@ -5,6 +5,8 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.List;
+
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
@@ -12,5 +14,8 @@ import lombok.NoArgsConstructor;
 public class DeliveryRequest {
 
     private Long orderId;
-    private String orderStatus;
+    private List<Long> pizzasId;
+    private String deliveryAddress;
+    private Long clientId;
+    private Long restaurantIdToTakePizza;
 }

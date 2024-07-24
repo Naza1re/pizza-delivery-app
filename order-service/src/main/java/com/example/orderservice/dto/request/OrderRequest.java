@@ -1,5 +1,6 @@
 package com.example.orderservice.dto.request;
 
+import com.example.orderservice.model.typedelivery.GettingType;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -16,6 +17,7 @@ public class OrderRequest {
     private Long clientId;
     private String deliveryAddress;
     private Long restaurantIdl;
+    private GettingType gettingType;
 
 
 }

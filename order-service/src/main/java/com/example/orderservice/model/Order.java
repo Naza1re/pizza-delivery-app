@@ -1,6 +1,7 @@
 package com.example.orderservice.model;
 
 import com.example.orderservice.model.status.Status;
+import com.example.orderservice.model.typedelivery.GettingType;
 import jakarta.persistence.*;
 import lombok.*;
 import org.hibernate.annotations.GenericGenerator;
@@ -33,9 +34,6 @@ public class Order {
     @Column(name = "delivery_address")
     private String deliveryAddress;
 
-    @Column(name = "client_name")
-    private String clientName;
-
     @Column(name = "restaurant_id")
     private Long restaurantIdl;
 
@@ -48,6 +46,10 @@ public class Order {
 
     @Column(name = "delivery_man")
     private Long deliveryManId;
+
+    @Column(name = "delivery_type")
+    @Enumerated(EnumType.STRING)
+    private GettingType gettingType;
 
 
 

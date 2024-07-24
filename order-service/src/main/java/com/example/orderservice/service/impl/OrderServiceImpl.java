@@ -1,21 +1,20 @@
 package com.example.orderservice.service.impl;
 
-import com.example.orderservice.client.DeliveryManClient;
-import com.example.orderservice.dto.response.ListOrderResponse;
 import com.example.orderservice.dto.request.DeliveryForOrder;
+import com.example.orderservice.dto.request.DeliveryRequest;
 import com.example.orderservice.dto.request.OrderForDelivery;
 import com.example.orderservice.dto.request.OrderRequest;
 import com.example.orderservice.dto.response.ClientResponse;
+import com.example.orderservice.dto.response.ListOrderResponse;
 import com.example.orderservice.dto.response.OrderResponse;
 import com.example.orderservice.exception.OrderNotFoundException;
 import com.example.orderservice.kafka.producer.OrderProducer;
 import com.example.orderservice.mapper.OrderMapper;
 import com.example.orderservice.model.Order;
+import com.example.orderservice.model.status.Status;
+import com.example.orderservice.model.typedelivery.GettingType;
 import com.example.orderservice.repository.OrderRepository;
-import com.example.orderservice.service.ClientService;
-import com.example.orderservice.service.DeliveryManService;
-import com.example.orderservice.service.OrderService;
-import com.example.orderservice.service.PizzaService;
+import com.example.orderservice.service.*;
 import com.example.orderservice.utill.ExceptionMessages;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -33,22 +32,25 @@ public class OrderServiceImpl implements OrderService {
     private final ClientService clientService;
     private final OrderProducer orderProducer;
     private final DeliveryManService deliveryManService;
+    private final DeliveryService deliveryService;
+    private final RestaurantService restaurantService;
 
 
     @Override
     public OrderResponse createOrder(OrderRequest orderRequest) {
         ClientResponse clientResponse = clientService.findClientById(orderRequest.getClientId());
         Order order = orderMapper.fromRequestToEntity(orderRequest);
-        order.setClientName(clientResponse.getFirstName());
         calculatePrice(order, orderRequest);
         order.setDateOfOrder(LocalDateTime.now());
+        order.setStatus(Status.CREATED);
+
 
         Order savedOrder = orderRepository.save(order);
 
         orderProducer.sendMessage(OrderForDelivery.builder()
                 .orderId(savedOrder.getId())
                 .build());
-
+        creatingOrder(savedOrder);
         return orderMapper.fromEntityToResponse(savedOrder);
     }
 
@@ -90,5 +92,22 @@ public class OrderServiceImpl implements OrderService {
         order.setDeliveryManId(delivery.getDeliveryManId());
         deliveryManService.changeDeliveryManStatus(order.getDeliveryManId());
         orderRepository.save(order);
+    }
+
+    private void creatingOrder(Order order) {
+        if (order.getGettingType().equals(GettingType.DELIVERY)) {
+            deliveryService.deliver(DeliveryRequest.builder()
+                    .orderId(order.getId())
+                    .deliveryAddress(order.getDeliveryAddress())
+                    .clientId(order.getClientId())
+                    .restaurantIdToTakePizza(order.getRestaurantIdl())
+                    .build()
+
+            );
+        } else {
+
+        }
+
+
     }
 }
