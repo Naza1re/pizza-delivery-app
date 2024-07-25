@@ -1,4 +1,4 @@
-package com.example.restaurantservice.dto;
+package com.example.restaurantservice.dto.response;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -9,7 +9,9 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class RestaurantRequest {
+public class RestaurantResponse {
+
+    private Long id;
     private String name;
     private String address;
 }

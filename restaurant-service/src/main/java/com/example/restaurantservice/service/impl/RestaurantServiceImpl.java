@@ -1,12 +1,15 @@
 package com.example.restaurantservice.service.impl;
 
-import com.example.restaurantservice.dto.RestaurantListResponse;
-import com.example.restaurantservice.dto.RestaurantRequest;
-import com.example.restaurantservice.dto.RestaurantResponse;
+import com.example.restaurantservice.dto.request.RestaurantOrderRequest;
+import com.example.restaurantservice.dto.response.RestaurantListResponse;
+import com.example.restaurantservice.dto.request.RestaurantRequest;
+import com.example.restaurantservice.dto.response.RestaurantOrderResponse;
+import com.example.restaurantservice.dto.response.RestaurantResponse;
 import com.example.restaurantservice.exception.RestaurantAlreadyExistException;
 import com.example.restaurantservice.exception.RestaurantNotFoundException;
 import com.example.restaurantservice.mapper.RestaurantMapper;
 import com.example.restaurantservice.model.Restaurant;
+import com.example.restaurantservice.model.RestaurantOrder;
 import com.example.restaurantservice.repository.RestaurantRepository;
 import com.example.restaurantservice.service.RestaurantService;
 import com.example.restaurantservice.util.ExceptionMessages;
@@ -84,4 +87,13 @@ public class RestaurantServiceImpl implements RestaurantService {
         updatedRestaurant.setId(id);
         return restaurantMapper.fromEntityToResponse(restaurantRepository.save(updatedRestaurant));
     }
+
+    @Override
+    public RestaurantOrderResponse createOrder(RestaurantOrderRequest request) {
+        Restaurant restaurant = getOrThrow(request.getRestaurantId());
+        RestaurantOrder order = RestaurantOrder.builder()
+                .orderId(request.getOrderId())
+
+    }
+
 }

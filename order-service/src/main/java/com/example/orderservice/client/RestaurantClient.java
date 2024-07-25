@@ -10,4 +10,5 @@ import org.springframework.web.bind.annotation.PostMapping;
 public interface RestaurantClient {
     @PostMapping()
 
+
 }

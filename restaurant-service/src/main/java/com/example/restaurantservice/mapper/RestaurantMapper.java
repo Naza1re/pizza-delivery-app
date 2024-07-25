@@ -1,7 +1,7 @@
 package com.example.restaurantservice.mapper;
 
-import com.example.restaurantservice.dto.RestaurantRequest;
-import com.example.restaurantservice.dto.RestaurantResponse;
+import com.example.restaurantservice.dto.request.RestaurantRequest;
+import com.example.restaurantservice.dto.response.RestaurantResponse;
 import com.example.restaurantservice.model.Restaurant;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;

@@ -1,16 +1,16 @@
 package com.example.restaurantservice.controller;
 
-import com.example.restaurantservice.dto.RestaurantListResponse;
-import com.example.restaurantservice.dto.RestaurantRequest;
-import com.example.restaurantservice.dto.RestaurantResponse;
+import com.example.restaurantservice.dto.request.RestaurantOrderRequest;
+import com.example.restaurantservice.dto.response.RestaurantListResponse;
+import com.example.restaurantservice.dto.request.RestaurantRequest;
+import com.example.restaurantservice.dto.response.RestaurantOrderResponse;
+import com.example.restaurantservice.dto.response.RestaurantResponse;
 import com.example.restaurantservice.service.RestaurantService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.UUID;
 
 @RequiredArgsConstructor
 @RequestMapping("/api/v1/restaurant")
@@ -48,5 +48,13 @@ public class RestaurantController {
     public ResponseEntity<RestaurantResponse> updateRestaurant(
             @PathVariable Long id, @RequestBody RestaurantRequest request) {
         return ResponseEntity.ok(restaurantService.updateRestaurantById(id,request));
+    }
+
+    @PostMapping("/order")
+    public ResponseEntity<RestaurantOrderResponse> createOrderInRestaurant(
+            @RequestBody RestaurantOrderRequest request
+            ) {
+        return ResponseEntity.status(HttpStatus.CREATED)
+                .body(restaurantService.createOrder(request));
     }
 }

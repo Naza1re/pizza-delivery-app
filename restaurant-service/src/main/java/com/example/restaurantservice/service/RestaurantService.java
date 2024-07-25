@@ -1,10 +1,10 @@
 package com.example.restaurantservice.service;
 
-import com.example.restaurantservice.dto.RestaurantListResponse;
-import com.example.restaurantservice.dto.RestaurantRequest;
-import com.example.restaurantservice.dto.RestaurantResponse;
-
-import java.util.UUID;
+import com.example.restaurantservice.dto.request.RestaurantOrderRequest;
+import com.example.restaurantservice.dto.response.RestaurantListResponse;
+import com.example.restaurantservice.dto.request.RestaurantRequest;
+import com.example.restaurantservice.dto.response.RestaurantOrderResponse;
+import com.example.restaurantservice.dto.response.RestaurantResponse;
 
 public interface RestaurantService {
 
@@ -17,4 +17,6 @@ public interface RestaurantService {
     RestaurantResponse deleteRestaurantById(Long id);
 
     RestaurantResponse updateRestaurantById(Long id,RestaurantRequest request);
+
+    RestaurantOrderResponse createOrder(RestaurantOrderRequest request);
 }
